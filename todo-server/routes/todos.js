@@ -39,4 +39,13 @@ router.put('/',function(req,res,next) {
 }})
   })
 
+router.delete('/',function(req,res,next){
+  Todo.findOneAndRemove({title: req.body.title},(err,doc) => {
+    if(err){
+      return res.json({error:err})
+    } else {
+      res.json({message: 'deleted'})
+    }
+  })
+})
 module.exports = router;
